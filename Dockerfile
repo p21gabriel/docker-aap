@@ -28,6 +28,16 @@ RUN yum remove php5* httpd24 php-* php-cli-* php-common-5.* php-common-5.3.29-1.
     && yum install -y php73.x86_64  php73-devel.x86_64 php73-cli.x86_64 php73-common.x86_64 php73-gd.x86_64 php73-intl.x86_64 \
     php73-mbstring.x86_64 php73-mysqlnd.x86_64 php73-pdo.x86_64 php73-soap.x86_64 php73-xml.x86_64 php73-xmlrpc.x86_64 \
 
+    && yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+    && yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+    && yum install -y https://rpmfind.net/linux/centos/7.9.2009/os/x86_64/Packages/scl-utils-20130529-19.el7.x86_64.rpm \
+    && yum install -y https://rpmfind.net/linux/centos/7.9.2009/os/x86_64/Packages/libedit-3.0-12.20121213cvs.el7.x86_64.rpm \
+    && set -e \
+    && yum-config-manager --enable epel \
+    && yum-config-manager --enable remi-php73 \
+    && yum install -y php73-php-common \
+    && yum install -y php73-php-pecl-xdebug
+
     #Configurações adicionais do php
     && echo 'include_path = ".:/usr/local/etc/php/"' >> /etc/php.ini \
 
